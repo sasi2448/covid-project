@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Airlines Prediction</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    
+    .navbar.navbar-inverse .navbar-header .navbar-brand {
+    display: inline-block;
+    text-align:center;
+    float: none;
+    vertical-align: top;
+  }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 750px}
+    .column{
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 800px; /* Should be removed. Only for demonstration */
+}
+body{
+min-height: 100%;
+   background-image: url("https://images.pexels.com/photos/1376889/pexels-photo-1376889.jpeg?cs=srgb&dl=pexels-disha-sheta-1376889.jpg&fm=jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: center center;
+}
+#ip{
+  width: 400px;
+}
+label{
+  text-align: left;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.form-group{
+  padding: 5px;
+}
+select{
+  min-height: 40px;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+  .row.content {height:auto;} 
+}
+#result{
+  padding-top: 20px;
+    padding-bottom: 20px;
+	font-size: 25px;
+	color: black;
+}
+
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #000000;
+      color: white;
+      padding: 20px;
+    }
+    
+    
+  </style>
+</head>
+
+<header>
+<nav class="navbar navbar-inverse">
+  <div class="container text-center">
+      <div class="navbar-header  col-md-12">
+        <a class="navbar-brand text-center" style="color: white"> Covid form </a>
+      </div>
+  </div>
+</nav>
+</header>
+ <form action="{{ url_for('predict')}}"method="post">
+<body class="d-flex flex-column">
+<div class="login">
+<div class="flex-grow-1 flex-shrink-0">
+ <div class="container text-center" id="form-body">   
+ <div class="row content">
+   <div class="column">  
+    <form action="#result">
+		<div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Fever" placeholder="Fever" required="required" ></label>
+      </div>
+	  
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Tiredness" placeholder="Tiredness"  required="required">
+          </label>
+      </div>
+        <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Dry-Cough" placeholder="Dry-Cough"  required="required">
+          </label>
+      </div>
+	  <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Difficulty-in-Breathing" placeholder="Difficulty-in-Breathing" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Sore-Throat" placeholder="Sore-Throat"  required="required">
+          </label>
+      </div>
+
+        <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="None_Sympton" placeholder="None_Sympton" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Pains" placeholder="Pains"  required="required">
+          </label>
+      </div>
+	  <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Nasal-Congestion" placeholder="Nasal-Congestion" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Runny-Nose" placeholder="Runny-Nose"  required="required">
+          </label>
+      </div>
+
+        <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Diarrhea" placeholder="Diarrhea" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="None_Experiencing" placeholder="None_Experiencing"  required="required">
+          </label>
+      </div>
+	  <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Difficulty-in-Breathing" placeholder="Difficulty-in-Breathing" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Age_0-9" placeholder="Age_0-9"  required="required">
+          </label>
+      </div>
+
+        <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Age_10-19" placeholder="Age_10-19" required="required" ></label>
+      </div>
+</div>
+	   <div class="column">
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Age_20-24" placeholder="Age_20-24"  required="required">
+          </label>
+      </div>
+	  <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Age_25-59" placeholder="Age_25-59" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Age_60+" placeholder="Age_60+"  required="required">
+          </label>
+      </div>
+
+         <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Gender_Female" placeholder="Gender_Female"  required="required">
+          </label>
+      </div>
+	  <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Gender_Male" placeholder="Gender_Male" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Gender_Transgender" placeholder="Gender_Transgender"  required="required">
+          </label>
+      </div>
+<div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Severity_Mild" placeholder="Severity_Mild"  required="required">
+          </label>
+      </div>
+	  <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Severity_Moderate" placeholder="Severity_Moderate" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Severity_None" placeholder="Severity_None"  required="required">
+          </label>
+      </div>
+
+         <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Severity_Severe" placeholder="Severity_Severe"  required="required">
+          </label>
+      </div>
+	  <div class="form-group">
+        <label >
+        <input type="text" class="form-control" id="ip" name ="Contact_Dont-Know" placeholder="Contact_Dont-Know" required="required" ></label>
+      </div>
+
+	   <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Contact_No" placeholder="Contact_No"  required="required">
+          </label>
+      </div>
+
+         <div class="form-group">
+        <label >
+          <input type="text" class="form-control" id="ip" name ="Contact_Yes" placeholder="Contact_Yes"  required="required">
+          </label>
+      </div>
+
+
+
+</div>
+<div class="container text-center" id="submit" >
+      <button type="submit" class="btn btn-default" onsubmit="#result" style="margin-top: 100px;">Predict</button>
+    <div class="container col-md-12 text-center" id="result"> <b>{{prediction_text}}</b>
+	<b id="result"></b>
+     </div>
+</div>
+	 </form>
+</div>
+ 
+   </div>   
+   </div>
+</div>
+  </div>
+</div>
+</div>
+
+</body>
+ </form>
+  <footer class="py-4 bg-dark flex-shrink-0">
+    <div class="container text-center">
+      <b class="text" style="color: white">Designed by Sasi Chandra</b>
+    </div>
+  </footer>
+</html>
